@@ -13,7 +13,7 @@ export default function Component() {
       <header className="px-4 lg:px-6 h-14 flex items-center justify-between">
         <Link className="flex items-center justify-center" href="#">
           <PlayCircle className="h-6 w-6 hover:text-pink-500" />
-          <span className="ml-2 text-lg font-semibold">Ricardo Lay's Moving Memories</span>
+          <span className="ml-2 text-lg font-semibold">Ricardo Lay&apos;s Moving Memories</span>
         </Link>
         <nav className="ml-auto flex gap-4 sm:gap-6 hidden lg:flex ">
         <Link className="text-sm font-medium  hover:text-pink-500" href="#services">
@@ -233,7 +233,7 @@ export default function Component() {
               <div className="space-y-2">
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Start Your Memory Journey Today</h2>
                 <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400">
-                  Don't let precious stories be lost. Capture your family's legacy now.
+                  Don&apos;t let precious stories be lost. Capture your family&apos;s legacy now.
                 </p>
               </div>
               <p className="text-lg font-semibold text-primary mb-4">
@@ -319,7 +319,7 @@ export default function Component() {
   )
 }
 
-function Link({ className, href, children }) {
+function Link({ className, href, children }: { className?: string; href: string; children: React.ReactNode }) {
   return (
     <a className={className} href={href}>
       {children}
