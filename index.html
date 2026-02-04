@@ -520,19 +520,55 @@
         }
 
         .package-card {
-            background: var(--white);
-            padding: 2.5rem 2rem;
-            text-align: center;
-            transition: all 0.3s ease;
+            background: transparent;
+            perspective: 1000px;
+            height: 550px;
             position: relative;
+            cursor: pointer;
         }
 
         .package-card.featured {
             transform: scale(1.05);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.12);
         }
 
-        .package-card.featured::before {
+        .package-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+
+        .package-card.flipped .package-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .package-card-front,
+        .package-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            background: var(--white);
+            padding: 2.5rem 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .package-card-front {
+            justify-content: center;
+        }
+
+        .package-card-back {
+            transform: rotateY(180deg);
+            justify-content: flex-start;
+            overflow-y: auto;
+            text-align: left;
+        }
+
+        .package-card.featured .package-card-front::before {
             content: 'Most Popular';
             position: absolute;
             top: 0;
@@ -546,13 +582,8 @@
             text-transform: uppercase;
         }
 
-        .package-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 30px 60px rgba(0,0,0,0.15);
-        }
-
-        .package-card.featured:hover {
-            transform: scale(1.05) translateY(-10px);
+        .package-card:hover .package-card-inner {
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
         }
 
         .package-card h3 {
@@ -578,20 +609,64 @@
             color: var(--olive);
         }
 
+        .package-brief {
+            font-size: 0.95rem;
+            color: var(--olive);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .flip-indicator {
+            font-size: 0.8rem;
+            color: var(--terracotta);
+            margin-top: auto;
+            padding-top: 1rem;
+        }
+
+        .package-description {
+            font-size: 0.95rem;
+            color: var(--olive);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .package-includes {
+            margin-top: 1rem;
+        }
+
+        .package-includes h4 {
+            font-size: 1rem;
+            color: var(--navy);
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+        }
+
         .package-features {
             list-style: none;
-            margin-bottom: 2rem;
-            text-align: left;
+            padding-left: 0;
         }
 
         .package-features li {
-            padding: 0.5rem 0;
-            border-bottom: 1px solid var(--sand);
-            font-size: 0.9rem;
+            padding: 0.4rem 0;
+            font-size: 0.85rem;
+            color: var(--olive);
+            position: relative;
+            padding-left: 1.2rem;
         }
 
-        .package-features li:last-child {
-            border-bottom: none;
+        .package-features li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--terracotta);
+        }
+
+        .back-button {
+            margin-top: auto;
+            padding-top: 1rem;
+            font-size: 0.85rem;
+            color: var(--terracotta);
+            text-align: center;
         }
 
         /* Add-ons Section */
@@ -1148,6 +1223,11 @@
                 grid-template-columns: 1fr;
             }
 
+            .package-card {
+                height: auto;
+                min-height: 450px;
+            }
+
             .addons-grid {
                 grid-template-columns: 1fr;
             }
@@ -1383,52 +1463,107 @@
             </div>
             <div class="packages-grid">
                 <div class="package-card fade-in">
-                    <h3>Legacy Short</h3>
-                    <p class="package-duration">~6 minutes</p>
-                    <p class="package-price">$1,500 <span>AUD</span></p>
-                    <ul class="package-features">
-                        <li>Concise life story film</li>
-                        <li>Core memories captured</li>
-                        <li>Ideal for individuals</li>
-                        <li>Brief family legacy</li>
-                    </ul>
-                    <a href="#contact" class="btn btn-outline">Learn More</a>
+                    <div class="package-card-inner">
+                        <div class="package-card-front">
+                            <h3>Legacy Short</h3>
+                            <p class="package-duration">~6 minutes</p>
+                            <p class="package-price">$1,500 <span>AUD</span></p>
+                            <p class="package-brief">Concise life story film capturing your core memories</p>
+                            <p class="flip-indicator">Click for details →</p>
+                        </div>
+                        <div class="package-card-back">
+                            <h3>Legacy Short</h3>
+                            <p class="package-description">A concise film capturing your core story and most meaningful memories. Ideal for individual stories or a brief family legacy.</p>
+                            <div class="package-includes">
+                                <h4>INCLUDES</h4>
+                                <ul class="package-features">
+                                    <li>One Main Story/Topic</li>
+                                    <li>Detailed interview</li>
+                                    <li>Archival Material</li>
+                                    <li>Slideshow</li>
+                                </ul>
+                            </div>
+                            <p class="back-button">← Click to return</p>
+                        </div>
+                    </div>
                 </div>
                 <div class="package-card featured fade-in">
-                    <h3>Legacy Standard</h3>
-                    <p class="package-duration">~12 minutes</p>
-                    <p class="package-price">$3,000 <span>AUD</span></p>
-                    <ul class="package-features">
-                        <li>Full personal documentary</li>
-                        <li>Life milestones coverage</li>
-                        <li>Family interviews</li>
-                        <li>Rich, detailed story</li>
-                    </ul>
-                    <a href="#contact" class="btn">Get Started</a>
+                    <div class="package-card-inner">
+                        <div class="package-card-front">
+                            <h3>Legacy Standard</h3>
+                            <p class="package-duration">~12 minutes</p>
+                            <p class="package-price">$3,000 <span>AUD</span></p>
+                            <p class="package-brief">Full personal documentary covering life milestones and family perspectives</p>
+                            <p class="flip-indicator">Click for details →</p>
+                        </div>
+                        <div class="package-card-back">
+                            <h3>Legacy Standard</h3>
+                            <p class="package-description">A full personal documentary covering life milestones, interviews, and family perspectives. Perfect for a rich, detailed story.</p>
+                            <div class="package-includes">
+                                <h4>INCLUDES</h4>
+                                <ul class="package-features">
+                                    <li>Two Main Stories/Topics</li>
+                                    <li>Detailed interview</li>
+                                    <li>Archival Material</li>
+                                    <li>Additional shots for support/b-roll (One different location)</li>
+                                    <li>Slideshow</li>
+                                </ul>
+                            </div>
+                            <p class="back-button">← Click to return</p>
+                        </div>
+                    </div>
                 </div>
                 <div class="package-card fade-in">
-                    <h3>Legacy Extended</h3>
-                    <p class="package-duration">~24 minutes</p>
-                    <p class="package-price">$6,000 <span>AUD</span></p>
-                    <ul class="package-features">
-                        <li>Comprehensive documentary</li>
-                        <li>Multiple generations</li>
-                        <li>Detailed interviews</li>
-                        <li>Archival material</li>
-                    </ul>
-                    <a href="#contact" class="btn btn-outline">Learn More</a>
+                    <div class="package-card-inner">
+                        <div class="package-card-front">
+                            <h3>Legacy Extended</h3>
+                            <p class="package-duration">~24 minutes</p>
+                            <p class="package-price">$6,000 <span>AUD</span></p>
+                            <p class="package-brief">Comprehensive documentary capturing multiple moments and detailed interviews</p>
+                            <p class="flip-indicator">Click for details →</p>
+                        </div>
+                        <div class="package-card-back">
+                            <h3>Legacy Extended</h3>
+                            <p class="package-description">Comprehensive documentary capturing multiple moments at different locations, detailed interviews, and archival material. Ideal for couples, families, or extensive personal stories.</p>
+                            <div class="package-includes">
+                                <h4>INCLUDES</h4>
+                                <ul class="package-features">
+                                    <li>Three Main Stories/Topics</li>
+                                    <li>Detailed interview</li>
+                                    <li>Additional shots for support/b-roll (Two different locations)</li>
+                                    <li>Archival Photos & Videos</li>
+                                    <li>Slideshow</li>
+                                </ul>
+                            </div>
+                            <p class="back-button">← Click to return</p>
+                        </div>
+                    </div>
                 </div>
                 <div class="package-card fade-in">
-                    <h3>Legacy Epic</h3>
-                    <p class="package-duration">40+ minutes</p>
-                    <p class="package-price">Contact Us</p>
-                    <ul class="package-features">
-                        <li>Multi-part documentary</li>
-                        <li>Extended interviews</li>
-                        <li>Events coverage</li>
-                        <li>Complete life journey</li>
-                    </ul>
-                    <a href="#contact" class="btn btn-outline">Learn More</a>
+                    <div class="package-card-inner">
+                        <div class="package-card-front">
+                            <h3>Legacy Epic</h3>
+                            <p class="package-duration">40+ minutes</p>
+                            <p class="package-price">Contact Us</p>
+                            <p class="package-brief">Multi-part documentary capturing your complete life's journey</p>
+                            <p class="flip-indicator">Click for details →</p>
+                        </div>
+                        <div class="package-card-back">
+                            <h3>Legacy Epic</h3>
+                            <p class="package-description">A multi-part or in-depth documentary, including extended interviews, events, and archival content. Perfect for couples, families, or a life's journey in detail.</p>
+                            <div class="package-includes">
+                                <h4>INCLUDES</h4>
+                                <ul class="package-features">
+                                    <li>Four Main Stories/Topics</li>
+                                    <li>Detailed Interviews @ two locations</li>
+                                    <li>Additional shots for support/b-roll (Two Different location)</li>
+                                    <li>Archival Photos & Videos</li>
+                                    <li>Slideshow</li>
+                                </ul>
+                            </div>
+                            <p class="back-button">← Click to return</p>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -1647,6 +1782,16 @@
                     });
                     navLinks.classList.remove('active');
                 }
+            });
+        });
+
+        // Package card flip functionality
+        document.querySelectorAll('.package-card').forEach(card => {
+            card.addEventListener('click', function(e) {
+                // Don't flip if clicking on a link
+                if (e.target.tagName === 'A') return;
+
+                this.classList.toggle('flipped');
             });
         });
 
