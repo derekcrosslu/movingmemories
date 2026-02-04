@@ -594,6 +594,70 @@
             border-bottom: none;
         }
 
+        /* Add-ons Section */
+        .addons-section {
+            margin-top: 5rem;
+        }
+
+        .addons-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .addon-card {
+            background: var(--white);
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .addon-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 0;
+            background: var(--terracotta);
+            transition: height 0.3s ease;
+        }
+
+        .addon-card:hover::before {
+            height: 100%;
+        }
+
+        .addon-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+        }
+
+        .addon-card h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            color: var(--navy);
+            margin-bottom: 0.75rem;
+        }
+
+        .addon-card p {
+            font-size: 0.95rem;
+            color: var(--olive);
+            margin-bottom: 1rem;
+        }
+
+        .addon-card .addon-price {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            color: var(--terracotta);
+            font-weight: 500;
+        }
+
+        .addon-card .addon-price span {
+            font-size: 0.85rem;
+            color: var(--olive);
+        }
+
         /* Gallery Section */
         .gallery {
             background: var(--white);
@@ -1020,6 +1084,10 @@
                 grid-template-columns: repeat(2, 1fr);
             }
 
+            .addons-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
             .footer-content {
                 grid-template-columns: 1fr 1fr;
             }
@@ -1077,6 +1145,10 @@
             }
 
             .packages-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .addons-grid {
                 grid-template-columns: 1fr;
             }
 
@@ -1357,6 +1429,37 @@
                         <li>Complete life journey</li>
                     </ul>
                     <a href="#contact" class="btn btn-outline">Learn More</a>
+                </div>
+            </div>
+
+            <!-- Add-ons Subsection -->
+            <div class="addons-section">
+                <div class="section-header fade-in">
+                    <h3 style="font-size: 2rem; color: var(--navy);">Enhance Your Film</h3>
+                    <div class="divider"></div>
+                    <p>Optional add-ons to create an even more complete legacy</p>
+                </div>
+                <div class="addons-grid">
+                    <div class="addon-card fade-in">
+                        <h4>Additional Filming Day</h4>
+                        <p>Extra day of filming for more coverage</p>
+                        <p class="addon-price">$900 - $1,400 <span>AUD</span></p>
+                    </div>
+                    <div class="addon-card fade-in">
+                        <h4>Premium Music License</h4>
+                        <p>Licensed music to enhance your film</p>
+                        <p class="addon-price">$80 - $300 <span>per track AUD</span></p>
+                    </div>
+                    <div class="addon-card fade-in">
+                        <h4>Extra Raw Footage</h4>
+                        <p>Full access to original footage</p>
+                        <p class="addon-price">$900 - $2,000 <span>AUD</span></p>
+                    </div>
+                    <div class="addon-card fade-in">
+                        <h4>Archival Scanning</h4>
+                        <p>Digitizing old photos, letters, VHS, etc.</p>
+                        <p class="addon-price">$250 - $600 <span>AUD</span></p>
+                    </div>
                 </div>
             </div>
         </div>
