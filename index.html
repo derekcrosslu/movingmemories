@@ -1257,10 +1257,31 @@
 
             .package-card-inner {
                 height: auto;
+                transform-style: flat;
             }
 
-            .package-card-front {
+            .package-card.flipped .package-card-inner {
+                transform: none;
+            }
+
+            .package-card-front,
+            .package-card-back {
                 position: relative;
+                backface-visibility: visible;
+                height: auto;
+            }
+
+            .package-card-back {
+                display: none;
+                transform: none;
+            }
+
+            .package-card.flipped .package-card-front {
+                display: none;
+            }
+
+            .package-card.flipped .package-card-back {
+                display: flex;
             }
 
             .addons-grid {
